@@ -1,5 +1,12 @@
-import React from "react";
-import { Box, Text, Input, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  useBreakpointValue,
+  Image,
+} from "@chakra-ui/react";
 
 const Herosection = () => {
   const headerFontSize = useBreakpointValue({ base: "4rem", md: "5.2rem" });
@@ -41,7 +48,26 @@ const Herosection = () => {
           voluptatum impedit nulla quia quos.
         </Text>
 
-        <Input padding={"2rem"} placeholder="Search by title or keyword" />
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents="none"
+            height="100%"
+            paddingLeft="1rem"
+          >
+            <Image src="/assets/images/search.svg" alt="Search" />
+          </InputLeftElement>
+          <Input
+            outline="none"
+            focusBorderColor="#314EF9"
+            padding="2rem"
+            paddingLeft="4rem"
+            placeholder="Search by title or keyword"
+            fontSize="1.6rem"
+            height="5rem"
+            borderRadius="0.8rem"
+            _hover={{ borderColor: "#314EF9" }}
+          />
+        </InputGroup>
       </Box>
     </Box>
   );
