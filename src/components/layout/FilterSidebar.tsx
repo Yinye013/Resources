@@ -1,3 +1,4 @@
+// src/components/layout/FilterSidebar/FilterSidebar.tsx
 import {
   Box,
   VStack,
@@ -7,6 +8,14 @@ import {
   Divider,
   Hide,
   Image,
+  useDisclosure,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Flex,
 } from "@chakra-ui/react";
 import { useFilter } from "@/context";
 import { FilterSection } from "./FilterSection";
@@ -28,102 +37,185 @@ export const FilterSidebar = () => {
     toggleCategory,
   } = useFilter();
 
+  // For mobile filter drawer
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Box
-      bg="white"
-      p={6}
-      top="24px"
-      backgroundColor={{ base: "gray.100", md: "white" }}
-    >
-      <VStack spacing={6} align="stretch">
-        {/* Header */}
-        <Box textAlign={{ base: "center", md: "left" }} mb={4}>
-          <Hide above="md">
+    <>
+      <Box
+        bg="white"
+        p={{ base: 4, sm: 6 }}
+        position={{ base: "relative", sm: "sticky" }}
+        top={{ base: "0", sm: "24px" }}
+        w="100%"
+        maxW={{ base: "100%", sm: "280px" }}
+      >
+        <VStack spacing={6} align="stretch">
+          {/* Mobile Filter Trigger - Shows only on mobile */}
+          <Hide above="sm">
+            <Button
+              onClick={onOpen}
+              variant="ghost"
+              justifyContent="center"
+              h="auto"
+              p={4}
+              bg={"gray.50"}
+              _hover={{ bg: "gray.100" }}
+              _active={{ bg: "gray.200" }}
+              transition="all 0.2s"
+            >
+              <VStack spacing={2}>
+                <Box display="flex" alignItems="center" gap={3}>
+                  <Image
+                    src="/assets/images/filter.svg"
+                    alt="Filter icon"
+                    boxSize="18px"
+                  />
+                  <Text fontSize="1.4rem" fontWeight="700" color="gray.800">
+                    Show Filters
+                  </Text>
+                </Box>
+                {hasActiveFilters() && (
+                  <Text fontSize="xl" color="blue.500" fontWeight="medium">
+                    {getActiveFilterCount()} filter
+                    {getActiveFilterCount() !== 1 ? "s" : ""} active
+                  </Text>
+                )}
+              </VStack>
+            </Button>
+          </Hide>
+
+          {/* hide below sm means it shows on iPad Mini, iPad Air, iPad Pro, and Desktop */}
+          <Hide below="sm">
             <Box>
               <Heading
                 size="md"
-                fontSize={"1.6rem"}
-                fontWeight={"700"}
+                fontSize="1.6rem"
+                fontWeight="700"
                 color="gray.800"
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <Image src="/assets/images/filter.svg" alt="Show Filters" />
-                <Text as="span" ml={2}>
-                  Show Filters
-                </Text>
-              </Heading>
-            </Box>
-          </Hide>
-
-          <Hide below="md">
-            <Box textAlign={{ base: "center", md: "left" }} mb={4}>
-              <Heading
-                size="md"
-                fontSize={"1.6rem"}
-                fontWeight={"700"}
-                color="gray.800"
-                mb={"2rem"}
+                mb={4}
               >
                 Filters
               </Heading>
+
+              {hasActiveFilters() && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  colorScheme="blue"
+                  onClick={clearAllFilters}
+                  p={0}
+                  h="auto"
+                  fontWeight="normal"
+                  mb={4}
+                  _hover={{ textDecoration: "underline" }}
+                >
+                  Clear all ({getActiveFilterCount()})
+                </Button>
+              )}
+            </Box>
+
+            <Divider />
+
+            <FilterSection
+              title="Key Foundational Principles"
+              options={PRINCIPLES}
+              selectedOptions={filterState.principles}
+              onToggle={togglePrinciple}
+            />
+
+            <Divider />
+
+            <FilterSection
+              title="Document type"
+              options={DOCUMENT_TYPES}
+              selectedOptions={filterState.documentTypes}
+              onToggle={toggleDocumentType}
+            />
+
+            <Divider />
+
+            <FilterSection
+              title="Categories"
+              options={CATEGORIES}
+              selectedOptions={filterState.categories}
+              onToggle={toggleCategory}
+            />
+
+            <Box pt={4}>
+              <Text fontSize="xl" color="gray.500" textAlign="center">
+                {filteredResources.length} result
+                {filteredResources.length !== 1 ? "s" : ""}
+              </Text>
             </Box>
           </Hide>
+        </VStack>
+      </Box>
 
-          <Hide below="md">
-            <Divider />
-            {hasActiveFilters() && (
-              <Button
-                size="sm"
-                variant="ghost"
-                colorScheme="blue"
-                onClick={clearAllFilters}
-                p={0}
-                h="auto"
-                fontWeight="normal"
-                _hover={{ textDecoration: "underline" }}
-              >
-                Clear all ({getActiveFilterCount()})
-              </Button>
-            )}
-          </Hide>
-        </Box>
+      {/* mobile drawer */}
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton size="2xl" marginTop={4} />
 
-        {/* Key Foundational Principles */}
-        <Hide below="md">
-          <FilterSection
-            title="Key Foundational Principles"
-            options={PRINCIPLES}
-            selectedOptions={filterState.principles}
-            onToggle={togglePrinciple}
-          />
+          <DrawerHeader pb={4}>
+            <VStack spacing={4} align="stretch">
+              <Flex justify="space-between" align="center" maxWidth={"20rem"}>
+                <Text fontSize="1.4rem" fontWeight="bold" color="gray.800">
+                  Filters
+                </Text>
+                {hasActiveFilters() && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    colorScheme="blue"
+                    onClick={clearAllFilters}
+                    fontSize="lg"
+                  >
+                    Clear all ({getActiveFilterCount()})
+                  </Button>
+                )}
+              </Flex>
+            </VStack>
+          </DrawerHeader>
 
-          {/* Document Type */}
-          <FilterSection
-            title="Document type"
-            options={DOCUMENT_TYPES}
-            selectedOptions={filterState.documentTypes}
-            onToggle={toggleDocumentType}
-          />
+          <DrawerBody px={6}>
+            <VStack spacing={6} align="stretch">
+              <FilterSection
+                title="Key Foundational Principles"
+                options={PRINCIPLES}
+                selectedOptions={filterState.principles}
+                onToggle={togglePrinciple}
+              />
 
-          {/* Categories */}
-          <FilterSection
-            title="Categories"
-            options={CATEGORIES}
-            selectedOptions={filterState.categories}
-            onToggle={toggleCategory}
-          />
+              <Divider />
 
-          {/* Results Count */}
-          <Box pt={4}>
-            <Text fontSize="sm" color="gray.500" textAlign="center">
-              {filteredResources.length} result
-              {filteredResources.length !== 1 ? "s" : ""}
-            </Text>
-          </Box>
-        </Hide>
-      </VStack>
-    </Box>
+              <FilterSection
+                title="Document type"
+                options={DOCUMENT_TYPES}
+                selectedOptions={filterState.documentTypes}
+                onToggle={toggleDocumentType}
+              />
+
+              <Divider />
+
+              <FilterSection
+                title="Categories"
+                options={CATEGORIES}
+                selectedOptions={filterState.categories}
+                onToggle={toggleCategory}
+              />
+
+              <Box pt={4} pb={8}>
+                <Text fontSize="xl" color="gray.500" textAlign="center">
+                  {filteredResources.length} result
+                  {filteredResources.length !== 1 ? "s" : ""}
+                </Text>
+              </Box>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 };

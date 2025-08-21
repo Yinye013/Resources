@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, VStack, Heading, Text, Tag, Flex, Image } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Heading,
+  Text,
+  Tag,
+  Flex,
+  Image,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import type { Resource, DocumentType } from "@/types/types";
 
 interface CardProps {
@@ -31,43 +40,96 @@ interface BackgroundStyle {
   opacity: number;
 }
 
-// Get background image style based on card color
-const getBackgroundStyle = (color?: string): BackgroundStyle => {
-  const styleMap: Record<string, BackgroundStyle> = {
+// Responsive background styles for desktop and mobile
+interface ResponsiveBackgroundStyle {
+  desktop: BackgroundStyle;
+  mobile: BackgroundStyle;
+}
+
+// Get background image style based on card color with responsive sizing
+const getResponsiveBackgroundStyle = (
+  color?: string
+): ResponsiveBackgroundStyle => {
+  const styleMap: Record<string, ResponsiveBackgroundStyle> = {
     red: {
-      src: "/assets/images/red.svg",
-      position: { top: "-50px", right: "-20px" },
-      width: "150px",
-      height: "150px",
-      opacity: 1,
+      desktop: {
+        src: "/assets/images/red.svg",
+        position: { top: "-85px", right: "-20px" },
+        width: "226.26px",
+        height: "257.12px",
+        opacity: 1,
+      },
+      mobile: {
+        src: "/assets/images/red.svg",
+        position: { top: "-85px", right: "-20px" },
+        width: "226.26px", // Same as desktop for red
+        height: "257.12px",
+        opacity: 1,
+      },
     },
     blue: {
-      src: "/assets/images/blue.svg",
-      position: { top: "-50px", right: "-30px" },
-      width: "170px",
-      height: "170px",
-      opacity: 1,
+      desktop: {
+        src: "/assets/images/blue.svg",
+        position: { top: "-60px", right: "-30px" },
+        width: "247.72px",
+        height: "258.12px",
+        opacity: 1,
+      },
+      mobile: {
+        src: "/assets/images/blue.svg",
+        position: { top: "-180px", right: "-30px" },
+        width: "351.87px", // Mobile specific size
+        height: "366.65px",
+        opacity: 1,
+      },
     },
     green: {
-      src: "/assets/images/green.svg",
-      position: { top: "-50px", left: "0px" },
-      width: "160px",
-      height: "160px",
-      opacity: 1,
+      desktop: {
+        src: "/assets/images/green.svg",
+        position: { top: "-25px", left: "0px" },
+        width: "285px",
+        height: "150px",
+        opacity: 1,
+      },
+      mobile: {
+        src: "/assets/images/green.svg",
+        position: { top: "-60px", left: "0px" },
+        width: "404.83px", // Mobile specific size
+        height: "213.07px",
+        opacity: 1,
+      },
     },
     yellow: {
-      src: "/assets/images/yellow.svg",
-      position: { top: "-50px", left: "0px" },
-      width: "140px",
-      height: "140px",
-      opacity: 1,
+      desktop: {
+        src: "/assets/images/yellow.svg",
+        position: { top: "-90px", left: "0px" },
+        width: "226.26px",
+        height: "257.12px",
+        opacity: 1,
+      },
+      mobile: {
+        src: "/assets/images/yellow.svg",
+        position: { top: "-123px", left: "0px" },
+        width: "321.4px", // Mobile specific size
+        height: "365.23px",
+        opacity: 1,
+      },
     },
     orange: {
-      src: "/assets/images/orange.svg",
-      position: { top: "-50px", left: "0px" },
-      width: "180px",
-      height: "180px",
-      opacity: 1,
+      desktop: {
+        src: "/assets/images/orange.svg",
+        position: { top: "-25px", left: "0px" },
+        width: "285px",
+        height: "150px",
+        opacity: 1,
+      },
+      mobile: {
+        src: "/assets/images/orange.svg",
+        position: { top: "-60px", left: "0px" },
+        width: "404.83px", // Mobile specific size
+        height: "213.07px",
+        opacity: 1,
+      },
     },
   };
 
@@ -76,7 +138,13 @@ const getBackgroundStyle = (color?: string): BackgroundStyle => {
 
 const Card: React.FC<CardProps> = ({ resource }) => {
   const documentIconPath = getDocumentIconPath(resource.documentType);
-  const bgStyle = getBackgroundStyle(resource.color);
+  const responsiveBgStyle = getResponsiveBackgroundStyle(resource.color);
+
+  // Use responsive values for background image sizing
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const bgStyle = isMobile
+    ? responsiveBgStyle.mobile
+    : responsiveBgStyle.desktop;
 
   return (
     <Box
@@ -97,7 +165,7 @@ const Card: React.FC<CardProps> = ({ resource }) => {
       justifyContent={"flex-end"}
       border={"1px solid #F2F2F2"}
     >
-      {/* Vector background image with dynamic positioning */}
+      {/* Vector background image with dynamic positioning and responsive sizing */}
       <Image
         src={bgStyle.src}
         alt=""
@@ -114,7 +182,7 @@ const Card: React.FC<CardProps> = ({ resource }) => {
       />
 
       {/* Document Type Icon using vector image */}
-      <Flex justifyContent="flex-start" mb={10} position="relative" zIndex={2}>
+      <Flex justifyContent="flex-start" mb={50} position="relative" zIndex={2}>
         <Box position="relative">
           <Image
             src={documentIconPath}
@@ -141,6 +209,8 @@ const Card: React.FC<CardProps> = ({ resource }) => {
           lineHeight="1.3"
           noOfLines={3}
           fontFamily={"Poppins"}
+          position={"relative"}
+          zIndex={2}
         >
           {resource.title}
         </Heading>
