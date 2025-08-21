@@ -10,7 +10,7 @@ const Content = () => {
       alignItems="center"
       justifyContent="center"
       margin="0 auto"
-      padding={{ base: "1rem", md: "2rem" }}
+      padding={{ base: "2rem", md: "2rem" }}
     >
       <Box
         maxWidth={"1161px"}

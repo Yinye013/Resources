@@ -87,29 +87,14 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
     );
   }
 
-  // Results grid
   return (
     <Box>
-      <Flex justify="space-between" align="center" mb={"4rem"}>
-        {/* <Text color="gray.600" fontSize="1.4rem">
-          Showing {filteredResources.length} of {filteredResources.length}{" "}
-          resources
-          {filterState.searchQuery && (
-            <Text as="span" fontWeight="medium">
-              {" "}
-              for "{filterState.searchQuery}"
-            </Text>
-          )}
-        </Text> */}
-      </Flex>
-
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%">
         {filteredResources.map((resource) => (
           <Card key={resource.id} resource={resource} />
         ))}
       </SimpleGrid>
 
-      {/* Load more placeholder for future pagination */}
       {filteredResources.length > 0 && (
         <Flex justify="center" mt={12}>
           <Text fontSize="1.4rem" color="gray.500">

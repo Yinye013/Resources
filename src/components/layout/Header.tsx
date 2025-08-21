@@ -92,7 +92,6 @@ const Header = () => {
                 >
                   Dashboard
                 </Box>
-                {/* resource box */}
                 <Box
                   as="a"
                   href="#"
@@ -156,7 +155,7 @@ const Header = () => {
 
           <Flex gap="2rem" alignItems="center">
             <Flex alignItems="center" gap={"1.4rem"}>
-              {/* switch */}
+              {/* switch component*/}
               <Switch
                 size="lg"
                 colorScheme="blue"
@@ -238,15 +237,15 @@ const Header = () => {
         </Flex>
       </Box>
 
-      {/* Mobile/Tablet Navigation Drawer */}
+      {/* mobile/tablet navigation drawer */}
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton size="2xl" marginTop={3} />
+          <DrawerCloseButton fontSize="1.4rem" marginTop={2} marginRight={2} />
 
           <DrawerHeader pb={4}>
             <VStack spacing={4} align="stretch">
-              <Text fontSize="xl" fontWeight="bold" color="gray.800">
+              <Text fontSize="1.4rem" fontWeight="bold" color="gray.800">
                 Menu
               </Text>
 
@@ -267,12 +266,12 @@ const Header = () => {
                   JA
                 </Box>
                 <VStack align="start" spacing={0}>
-                  <Text fontSize="1.4rem" fontWeight="600">
+                  <Text fontSize="1.6rem" fontWeight="600">
                     Jonathan
                   </Text>
                   <HStack spacing={2}>
                     <Switch
-                      size="md"
+                      size="lg"
                       colorScheme="blue"
                       sx={{
                         "& .chakra-switch__track[data-checked]": {
@@ -283,7 +282,7 @@ const Header = () => {
                         },
                       }}
                     />
-                    <Text fontSize="1rem" color="gray.600">
+                    <Text fontSize="1.4rem" color="gray.600">
                       Employee View
                     </Text>
                   </HStack>
@@ -294,16 +293,16 @@ const Header = () => {
 
           <DrawerBody px={6}>
             <VStack spacing={6} align="stretch">
-              {/* Navigation Menu */}
+              {/* nav menu */}
               <VStack spacing={4} align="stretch">
-                <Text fontSize="1.4rem" fontWeight="semibold" color="gray.800">
+                <Text fontSize="1.6rem" fontWeight="semibold" color="gray.800">
                   Navigation
                 </Text>
                 <VStack spacing={3} align="stretch">
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="md"
+                    fontSize="1.4rem"
                     h="auto"
                     py={3}
                     _hover={{ bg: "gray.50" }}
@@ -314,7 +313,7 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="md"
+                    fontSize="1.4rem"
                     h="auto"
                     py={3}
                     color="b#314EF9"
@@ -329,7 +328,7 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="md"
+                    fontSize="1.4rem"
                     h="auto"
                     py={3}
                     _hover={{ bg: "gray.50" }}

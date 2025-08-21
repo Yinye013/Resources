@@ -15,7 +15,6 @@ interface CardProps {
   resource: Resource;
 }
 
-// Icon mapping for document types - using vector images
 const getDocumentIconPath = (docType: DocumentType): string => {
   const iconMap: Record<string, string> = {
     Link: "/assets/images/link.svg",
@@ -26,7 +25,6 @@ const getDocumentIconPath = (docType: DocumentType): string => {
   return iconMap[docType] || iconMap.PDF;
 };
 
-// Background image style mapping with positioning information
 interface BackgroundStyle {
   src: string;
   position: {
@@ -40,13 +38,11 @@ interface BackgroundStyle {
   opacity: number;
 }
 
-// Responsive background styles for desktop and mobile
 interface ResponsiveBackgroundStyle {
   desktop: BackgroundStyle;
   mobile: BackgroundStyle;
 }
 
-// Get background image style based on card color with responsive sizing
 const getResponsiveBackgroundStyle = (
   color?: string
 ): ResponsiveBackgroundStyle => {
@@ -62,7 +58,7 @@ const getResponsiveBackgroundStyle = (
       mobile: {
         src: "/assets/images/red.svg",
         position: { top: "-85px", right: "-20px" },
-        width: "226.26px", // Same as desktop for red
+        width: "226.26px",
         height: "257.12px",
         opacity: 1,
       },
@@ -78,7 +74,7 @@ const getResponsiveBackgroundStyle = (
       mobile: {
         src: "/assets/images/blue.svg",
         position: { top: "-180px", right: "-30px" },
-        width: "351.87px", // Mobile specific size
+        width: "351.87px",
         height: "366.65px",
         opacity: 1,
       },
@@ -93,8 +89,8 @@ const getResponsiveBackgroundStyle = (
       },
       mobile: {
         src: "/assets/images/green.svg",
-        position: { top: "-60px", left: "0px" },
-        width: "404.83px", // Mobile specific size
+        position: { top: "-80px", left: "0px" },
+        width: "404.83px",
         height: "213.07px",
         opacity: 1,
       },
@@ -109,8 +105,8 @@ const getResponsiveBackgroundStyle = (
       },
       mobile: {
         src: "/assets/images/yellow.svg",
-        position: { top: "-123px", left: "0px" },
-        width: "321.4px", // Mobile specific size
+        position: { top: "-140px", left: "0px" },
+        width: "321.4px",
         height: "365.23px",
         opacity: 1,
       },
@@ -125,8 +121,8 @@ const getResponsiveBackgroundStyle = (
       },
       mobile: {
         src: "/assets/images/orange.svg",
-        position: { top: "-60px", left: "0px" },
-        width: "404.83px", // Mobile specific size
+        position: { top: "-80px", left: "0px" },
+        width: "404.83px",
         height: "213.07px",
         opacity: 1,
       },
@@ -140,7 +136,6 @@ const Card: React.FC<CardProps> = ({ resource }) => {
   const documentIconPath = getDocumentIconPath(resource.documentType);
   const responsiveBgStyle = getResponsiveBackgroundStyle(resource.color);
 
-  // Use responsive values for background image sizing
   const isMobile = useBreakpointValue({ base: true, md: false });
   const bgStyle = isMobile
     ? responsiveBgStyle.mobile
@@ -166,7 +161,6 @@ const Card: React.FC<CardProps> = ({ resource }) => {
       justifyContent={"flex-end"}
       border={"1px solid #F2F2F2"}
     >
-      {/* Vector background image with dynamic positioning and responsive sizing */}
       <Image
         src={bgStyle.src}
         alt=""
@@ -182,7 +176,6 @@ const Card: React.FC<CardProps> = ({ resource }) => {
         opacity={bgStyle.opacity}
       />
 
-      {/* Document Type Icon using vector image */}
       <Flex justifyContent="flex-start" mb={50} position="relative" zIndex={2}>
         <Box position="relative">
           <Image
@@ -194,7 +187,6 @@ const Card: React.FC<CardProps> = ({ resource }) => {
         </Box>
       </Flex>
 
-      {/* Card Content */}
       <VStack
         align="stretch"
         spacing={4}
@@ -225,11 +217,10 @@ const Card: React.FC<CardProps> = ({ resource }) => {
           {resource.topic}
         </Text>
 
-        {/* Category Tags */}
         <Flex wrap="wrap" gap={2}>
           {resource.categories.map((category, index) => (
             <Tag
-              key={index}
+              key={`${index + 1}`}
               size="sm"
               color={"#2C3237"}
               fontSize={"1.2rem"}

@@ -1,4 +1,3 @@
-// src/components/layout/FilterSidebar/FilterSidebar.tsx
 import {
   Box,
   VStack,
@@ -37,21 +36,18 @@ export const FilterSidebar = () => {
     toggleCategory,
   } = useFilter();
 
-  // For mobile filter drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Box
         bg="white"
-        // p={{ base: 4, sm: 6 }}
         position={{ base: "relative", sm: "sticky" }}
         top={{ base: "0", sm: "24px" }}
         w="100%"
         maxW={{ base: "100%", sm: "280px" }}
       >
         <VStack spacing={6} align="stretch">
-          {/* Mobile Filter Trigger - Shows only on mobile */}
           <Hide above="sm">
             <Button
               onClick={onOpen}
@@ -85,7 +81,7 @@ export const FilterSidebar = () => {
             </Button>
           </Hide>
 
-          {/* hide below sm means it shows on iPad Mini, iPad Air, iPad Pro, and Desktop */}
+          {/* hide below sm means it shows on iPad Mini, iPad Air, iPad Pro, and Desktop, got it */}
           <Hide below="sm">
             <Box>
               <Heading
@@ -145,7 +141,7 @@ export const FilterSidebar = () => {
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton size="2xl" marginTop={4} />
+          <DrawerCloseButton fontSize="1.4rem" marginTop={2} marginRight={2} />
 
           <DrawerHeader pb={4}>
             <VStack spacing={4} align="stretch">

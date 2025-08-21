@@ -21,8 +21,8 @@ const Herosection = () => {
   });
 
   const descriptionFontSize = useBreakpointValue({
-    base: "1.2rem",
-    sm: "1.3rem",
+    base: "1.6rem",
+    sm: "1.8rem",
     md: "1.4rem",
     lg: "1.6rem",
     xl: "1.6rem",
@@ -115,10 +115,9 @@ const Herosection = () => {
           lineHeight={{ base: "1.4", md: "1.5", lg: "1.6" }}
           px={{ base: "1rem", sm: "2rem", md: "3rem", lg: "0" }}
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet,
-          aliquam repellat similique repellendus delectus beatae unde vel
-          eveniet nesciunt voluptates obcaecati vitae nostrum! Nemo unde
-          voluptatum impedit nulla quia quos.
+          Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet
+          commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae
+          congue
         </Text>
 
         <Box width="100%" maxWidth={{ base: "100%", md: "50rem", lg: "60rem" }}>

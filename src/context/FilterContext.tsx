@@ -77,7 +77,6 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
 
   const filteredResources = useMemo(() => {
     return resources.filter((resource) => {
-      // Search query filter
       if (filterState.searchQuery) {
         const searchLower = filterState.searchQuery.toLowerCase();
         const matchesSearch =
@@ -87,7 +86,6 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
         if (!matchesSearch) return false;
       }
 
-      // Principles filter
       if (filterState.principles.length > 0) {
         const matchesPrinciples = filterState.principles.some(
           (principle: string) => resource.principles.includes(principle)
@@ -95,14 +93,12 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
         if (!matchesPrinciples) return false;
       }
 
-      // Document type filter
       if (filterState.documentTypes.length > 0) {
         if (!filterState.documentTypes.includes(resource.documentType)) {
           return false;
         }
       }
 
-      // Categories filter
       if (filterState.categories.length > 0) {
         const matchesCategories = filterState.categories.some(
           (category: string) => resource.categories.includes(category)
@@ -114,7 +110,6 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
     });
   }, [resources, filterState]);
 
-  // Action creators
   const togglePrinciple = (principle: string) => {
     dispatch({ type: "TOGGLE_PRINCIPLE", payload: principle });
   };
@@ -135,7 +130,6 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
     dispatch({ type: "CLEAR_ALL_FILTERS" });
   };
 
-  // Utility functions
   const getActiveFilterCount = (): number => {
     return (
       filterState.principles.length +
