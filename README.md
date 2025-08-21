@@ -1,70 +1,134 @@
-# React + TypeScript + Vite
+# Resources Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application for managing and exploring educational resources. This platform allows users to search, filter, and discover various educational materials based on principles, document types, and categories.
 
-Currently, two official plugins are available:
+![Resources Portal](./public/assets/images/logo.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **Modern UI**: Clean, professional interface built with Chakra UI
+- **Responsive Design**: Optimized for all device sizes from mobile to desktop
+- **Advanced Filtering**: Filter resources by principles, document types, and categories
+- **Search Functionality**: Search resources by title or keywords
+- **Custom Components**: Beautifully crafted UI components including:
+  - Custom styled cards with dynamic vector backgrounds
+  - Responsive navigation header
+  - Interactive filter sidebar
+  - Hero section with search capability
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technology Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19**: Latest version with improved performance
+- **TypeScript**: For type safety and better developer experience
+- **Chakra UI v2**: Component library for consistent design
+- **Vite**: Fast build tool and development server
+- **React Icons**: Comprehensive icon library
+- **Framer Motion**: Animations and transitions
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📋 Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18.x or higher
+- npm 7.x or higher
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/Yinye013/Resources.git
+cd Resources
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install --legacy-peer-deps
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+3. **Start the development server**
+
+```bash
+npm run dev
+```
+
+4. **Open your browser**
+
+Navigate to `http://localhost:5173` to see the application running.
+
+## 📁 Project Structure
+
+```plaintext
+public/
+├── assets/
+│   └── images/        # SVG icons and images
+src/
+├── components/        # React components
+│   ├── layout/        # Layout components (Header, Hero, Content)
+│   └── ui/            # Reusable UI components (Cards, Buttons)
+├── context/           # Context providers for state management
+├── data/              # Mock data and constants
+├── styles/            # Global styles and theme configuration
+├── types/             # TypeScript type definitions
+├── App.tsx            # Main application component
+└── main.tsx          # Application entry point
+```
+
+## 🔍 Key Components
+
+- **Header**: Navigation bar with responsive menu
+- **HeroSection**: Landing section with search functionality
+- **FilterSidebar**: Interactive sidebar for filtering resources
+- **Card**: Custom resource cards with dynamic styling based on type
+- **Content**: Main content area displaying filtered resources
+
+## 🔧 Configuration
+
+The application uses Chakra UI themes for styling. Theme configuration can be found in `src/styles/theme.ts`.
+
+## 📱 Responsive Design
+
+The application is fully responsive with breakpoints for:
+
+- Mobile devices (< 768px)
+- Tablets (768px - 992px)
+- Desktops (> 992px)
+
+## 🚢 Deployment
+
+The project is configured for easy deployment to Vercel:
+
+```bash
+npm run build
+```
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome. Feel free to check the [issues page](https://github.com/Yinye013/Resources/issues) if you want to contribute.
+
+## 👤 Author
+
+Created by Yinye
+
+- GitHub: [@Yinye013](https://github.com/Yinye013)
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
+  files: ['**/*.{ts,tsx}'],
+  extends: [
+  // Other configs...
+  // Enable lint rules for React
+  reactX.configs['recommended-typescript'],
+  // Enable lint rules for React DOM
+  reactDom.configs.recommended,
+  ],
+  languageOptions: {
+  parserOptions: {
+  project: ['./tsconfig.node.json', './tsconfig.app.json'],
+  tsconfigRootDir: import.meta.dirname,
   },
-])
+  // other options...
+  },
+  },
+  ])
+
 ```
 # Resources
+```
