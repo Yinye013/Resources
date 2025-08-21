@@ -88,7 +88,7 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
   }
 
   return (
-    <Box>
+    <Box paddingTop={"4rem"}>
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%">
         {filteredResources.map((resource) => (
           <Card key={resource.id} resource={resource} />
