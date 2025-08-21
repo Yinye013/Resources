@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, useBreakpointValue } from "@chakra-ui/react";
-import FilterSidebar from "./FIlterSidebar";
+import { Box } from "@chakra-ui/react";
+import { FilterSidebar } from "./FilterSidebar";
 import CardContent from "./CardContent";
 
 const Content = () => {
@@ -11,19 +11,18 @@ const Content = () => {
       alignItems="center"
       justifyContent="center"
       margin="0 auto"
-      padding="2rem"
+      padding={{ base: "1rem", md: "2rem" }}
     >
       <Box
         maxWidth={"1161px"}
         display="grid"
-        gridTemplateColumns="0.5fr 1fr"
+        gridTemplateColumns={{ base: "1fr", md: "0.5fr 1fr" }}
         gap="1rem"
         marginTop={"5rem"}
+        width="100%"
       >
         <FilterSidebar />
-
         <CardContent />
-        <Box />
       </Box>
     </Box>
   );

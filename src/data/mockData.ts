@@ -22,7 +22,6 @@ export const mockResources: Resource[] = [
   {
     id: "3",
     title: "The ultimate guide to Workplace Chat",
-
     topic: "Sample Topic",
     principles: ["Secure Base"],
     documentType: "Link",
