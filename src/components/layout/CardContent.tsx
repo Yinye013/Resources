@@ -17,9 +17,8 @@ interface ResourceGridProps {
 }
 
 const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
-  const { filteredResources, filterState, hasActiveFilters } = useFilter();
+  const { filteredResources, hasActiveFilters } = useFilter();
 
-  // Loading state
   if (isLoading) {
     return (
       <Flex justify="center" align="center" h="400px">
@@ -31,7 +30,6 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
     );
   }
 
-  // Empty state - no resources match filters
   if (filteredResources.length === 0 && hasActiveFilters()) {
     return (
       <Box
@@ -66,7 +64,6 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
     );
   }
 
-  // Empty state - no resources at all
   if (filteredResources.length === 0) {
     return (
       <Box
@@ -93,9 +90,8 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
   // Results grid
   return (
     <Box>
-      {/* Results header */}
-      <Flex justify="space-between" align="center" mt={8} mb={5}>
-        <Text color="gray.600" fontSize="1.4rem">
+      <Flex justify="space-between" align="center" mb={"4rem"}>
+        {/* <Text color="gray.600" fontSize="1.4rem">
           Showing {filteredResources.length} of {filteredResources.length}{" "}
           resources
           {filterState.searchQuery && (
@@ -104,10 +100,9 @@ const CardContent: React.FC<ResourceGridProps> = ({ isLoading = false }) => {
               for "{filterState.searchQuery}"
             </Text>
           )}
-        </Text>
+        </Text> */}
       </Flex>
 
-      {/* Resource grid */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%">
         {filteredResources.map((resource) => (
           <Card key={resource.id} resource={resource} />

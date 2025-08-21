@@ -7,8 +7,10 @@ import {
   useBreakpointValue,
   Image,
 } from "@chakra-ui/react";
+import { useFilter } from "@/context";
 
 const Herosection = () => {
+  const { setSearchQuery, filterState } = useFilter();
   // did this font sizing across devices:
   const headerFontSize = useBreakpointValue({
     base: "3.2rem",
@@ -141,11 +143,14 @@ const Herosection = () => {
               placeholder="Search by title or keyword"
               fontSize={inputFontSize}
               height={inputHeight}
+              borderColor={"#A1A1A1"}
               borderRadius={{ base: "0.6rem", md: "0.8rem" }}
               _hover={{ borderColor: "#314EF9" }}
               _placeholder={{
                 fontSize: { base: "1.3rem", md: "1.4rem", lg: "1.5rem" },
               }}
+              value={filterState.searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </InputGroup>
         </Box>

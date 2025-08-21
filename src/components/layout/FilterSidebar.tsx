@@ -44,7 +44,7 @@ export const FilterSidebar = () => {
     <>
       <Box
         bg="white"
-        p={{ base: 4, sm: 6 }}
+        // p={{ base: 4, sm: 6 }}
         position={{ base: "relative", sm: "sticky" }}
         top={{ base: "0", sm: "24px" }}
         w="100%"
@@ -100,7 +100,7 @@ export const FilterSidebar = () => {
 
               {hasActiveFilters() && (
                 <Button
-                  size="sm"
+                  size="1rem"
                   variant="ghost"
                   colorScheme="blue"
                   onClick={clearAllFilters}
@@ -124,8 +124,6 @@ export const FilterSidebar = () => {
               onToggle={togglePrinciple}
             />
 
-            <Divider />
-
             <FilterSection
               title="Document type"
               options={DOCUMENT_TYPES}
@@ -133,21 +131,12 @@ export const FilterSidebar = () => {
               onToggle={toggleDocumentType}
             />
 
-            <Divider />
-
             <FilterSection
               title="Categories"
               options={CATEGORIES}
               selectedOptions={filterState.categories}
               onToggle={toggleCategory}
             />
-
-            <Box pt={4}>
-              <Text fontSize="xl" color="gray.500" textAlign="center">
-                {filteredResources.length} result
-                {filteredResources.length !== 1 ? "s" : ""}
-              </Text>
-            </Box>
           </Hide>
         </VStack>
       </Box>
@@ -188,16 +177,12 @@ export const FilterSidebar = () => {
                 onToggle={togglePrinciple}
               />
 
-              <Divider />
-
               <FilterSection
                 title="Document type"
                 options={DOCUMENT_TYPES}
                 selectedOptions={filterState.documentTypes}
                 onToggle={toggleDocumentType}
               />
-
-              <Divider />
 
               <FilterSection
                 title="Categories"

@@ -154,6 +154,7 @@ const Card: React.FC<CardProps> = ({ resource }) => {
       overflow="hidden"
       cursor="pointer"
       transition="all 0.3s ease"
+      boxShadow={"0 4px 10px rgba(0, 0, 0, 0.05)"}
       _hover={{
         transform: "translateY(-4px)",
         boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",

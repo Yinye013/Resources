@@ -6,6 +6,7 @@ import {
   Switch,
   useBreakpointValue,
   Hide,
+  Divider,
   useDisclosure,
   Drawer,
   DrawerBody,
@@ -37,6 +38,8 @@ const Header = () => {
         boxShadow="md"
         bg="white"
         fontFamily={"Poppins"}
+        position="relative"
+        overflow="visible"
       >
         <Flex
           height="100%"
@@ -46,35 +49,138 @@ const Header = () => {
           maxWidth="1400px"
           margin="0 auto"
         >
-          <Flex gap={{ base: "1rem", md: "4.65rem" }} alignItems="center">
+          <Flex
+            gap={{ base: "1rem", md: "4.65rem" }}
+            height={headerHeight}
+            alignItems="center"
+          >
             <Box>
               <Image src="/assets/images/logo.svg" alt="Logo" />
             </Box>
-
+            {/* nav links */}
             <Hide below="lg">
-              <Flex gap="2rem" alignItems="center">
-                <Text fontSize={"1.4rem"} fontWeight={"600"}>
+              <Flex gap="2rem" alignItems="center" height="100%">
+                <Box
+                  as="a"
+                  href="#"
+                  fontSize="1.4rem"
+                  fontWeight="600"
+                  padding="0 8px"
+                  height="100%"
+                  display="flex"
+                  alignItems="center"
+                  color="black"
+                  position="relative"
+                  transition="color 0.3s ease"
+                  _hover={{
+                    color: "#314EF9",
+                    _after: {
+                      width: "100%",
+                    },
+                  }}
+                  _after={{
+                    content: '""',
+                    position: "absolute",
+                    bottom: "-2px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "0%",
+                    height: "4px",
+                    backgroundColor: "#314EF9",
+                    transition: "width 0.3s ease",
+                  }}
+                >
                   Dashboard
-                </Text>
-                <Text fontSize={"1.4rem"} fontWeight={"600"}>
+                </Box>
+                {/* resource box */}
+                <Box
+                  as="a"
+                  href="#"
+                  fontSize="1.4rem"
+                  fontWeight="600"
+                  padding="0 8px"
+                  height="100%"
+                  display="flex"
+                  alignItems="center"
+                  color="#314EF9"
+                  position="relative"
+                  _after={{
+                    content: '""',
+                    position: "absolute",
+                    bottom: "-2px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "100%",
+                    height: "4px",
+                    backgroundColor: "#314EF9",
+                    transition: "width 0.3s ease",
+                  }}
+                >
                   Resources
-                </Text>
-                <Text fontSize={"1.4rem"} fontWeight={"600"}>
+                </Box>
+                <Box
+                  as="a"
+                  href="#"
+                  fontSize="1.4rem"
+                  fontWeight="600"
+                  padding="0 8px"
+                  height="100%"
+                  display="flex"
+                  alignItems="center"
+                  color="black"
+                  position="relative"
+                  transition="color 0.3s ease"
+                  _hover={{
+                    color: "#314EF9",
+                    _after: {
+                      width: "100%",
+                    },
+                  }}
+                  _after={{
+                    content: '""',
+                    position: "absolute",
+                    bottom: "-2px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "0%",
+                    height: "4px",
+                    backgroundColor: "#314EF9",
+                    transition: "width 0.3s ease",
+                  }}
+                >
                   Toolkit
-                </Text>
+                </Box>
               </Flex>
             </Hide>
           </Flex>
 
           <Flex gap="2rem" alignItems="center">
             <Flex alignItems="center" gap={"1.4rem"}>
-              <Switch size="lg" fill={"#314EF9"} />
+              {/* switch */}
+              <Switch
+                size="lg"
+                colorScheme="blue"
+                sx={{
+                  "& .chakra-switch__track[data-checked]": {
+                    backgroundColor: "#314EF9 !important",
+                  },
+                  "& .chakra-switch__thumb": {
+                    backgroundColor: "white",
+                  },
+                }}
+              />
               <Hide below="lg">
                 <Text fontSize={"1.4rem"} fontWeight={"600"}>
                   Switch to Employee
                 </Text>
               </Hide>
             </Flex>
+
+            <Divider
+              orientation="vertical"
+              height="2.5rem"
+              borderColor="gray.300"
+            />
 
             <Flex alignItems="center" gap={"1.4rem"}>
               <Box
@@ -92,13 +198,22 @@ const Header = () => {
                 JA
               </Box>
               <Hide below="lg">
-                <Text fontSize={"1.4rem"} fontWeight={"600"}>
-                  Jonathan
-                </Text>
+                <Box display={"flex"} alignItems={"flex-start"} gap={"0.5rem"}>
+                  <Text fontSize={"1.4rem"} fontWeight={"600"}>
+                    Jonathan
+                  </Text>
+                  <Text
+                    fontSize={"1.4rem"}
+                    fontWeight={"600"}
+                    color={"gray.500"}
+                    marginTop={"-0.3rem"}
+                  >
+                    &#8964;
+                  </Text>
+                </Box>
               </Hide>
             </Flex>
 
-            {/* Mobile/Tablet Hamburger Menu */}
             <Hide above="lg">
               <Box
                 as="button"
@@ -156,7 +271,18 @@ const Header = () => {
                     Jonathan
                   </Text>
                   <HStack spacing={2}>
-                    <Switch size="md" />
+                    <Switch
+                      size="md"
+                      colorScheme="blue"
+                      sx={{
+                        "& .chakra-switch__track[data-checked]": {
+                          backgroundColor: "#314EF9 !important",
+                        },
+                        "& .chakra-switch__thumb": {
+                          backgroundColor: "white",
+                        },
+                      }}
+                    />
                     <Text fontSize="1rem" color="gray.600">
                       Employee View
                     </Text>
@@ -177,7 +303,7 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="1.2rem"
+                    fontSize="md"
                     h="auto"
                     py={3}
                     _hover={{ bg: "gray.50" }}
@@ -188,12 +314,14 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="1.2rem"
+                    fontSize="md"
                     h="auto"
                     py={3}
+                    color="b#314EF9"
+                    borderLeft="3px solid"
+                    borderLeftColor="#314EF9"
                     bg="blue.50"
-                    color="blue.600"
-                    _hover={{ bg: "blue.100" }}
+                    _hover={{ bg: "blue.300" }}
                     onClick={onClose}
                   >
                     Resources
@@ -201,7 +329,7 @@ const Header = () => {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
-                    fontSize="1.2rem"
+                    fontSize="md"
                     h="auto"
                     py={3}
                     _hover={{ bg: "gray.50" }}
